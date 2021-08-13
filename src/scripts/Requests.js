@@ -1,4 +1,4 @@
-import { getRequests } from "./dataAccess.js"
+import { getRequests, deleteRequest } from "./dataAccess.js"
 
 export const Requests = () => {
     const requests = getRequests()
@@ -15,7 +15,23 @@ export const Requests = () => {
 }
 
 const convertRequestToListElement = (request) => {
-    return  `<li>
+    return `
+    <li>
         ${request.description}
-    </li>`
+        <button class="request__delete"
+                id="request--${request.id}">
+            Delete
+        </button>
+    </li>
+`
+
 }
+
+const mainContainer = document.querySelector("#container")
+
+mainContainer.addEventListener("click", click => {
+    if (click.target.id.startsWith("request--")) {
+        const [,requestId] = click.target.id.split("--")
+        deleteRequest(parseInt(requestId))
+    }
+})
