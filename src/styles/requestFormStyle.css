@@ -1,0 +1,11 @@
+.field {
+    display: flex;
+    flex-direction: column
+}
+
+.button {
+    margin-top: 2rem;
+    background-color: darkslateblue;
+    color: white;
+    padding: .5rem;
+}
